@@ -1,0 +1,106 @@
+/* Variables y reset */
+:root{
+  --bg1: #071025;
+  --bg2: #0d1b34;
+  --accent: #ffd84d;
+  --card: rgba(255,255,255,0.06);
+  --sun: #f7c700;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; background: linear-gradient(180deg,var(--bg1),var(--bg2)); color:#fff;}
+
+/* canvas estrellas */
+#stars-canvas{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* contenido */
+.wrap{
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1rem;
+}
+
+/* hero */
+.hero{ text-align:center; margin-top:6vh; margin-bottom: 20px; }
+.headline{
+  font-size:clamp(2rem, 6vw, 4rem);
+  letter-spacing:0.02em;
+  color: #fff;
+  text-shadow: 0 6px 20px rgba(255,200,50,0.12), 0 2px 8px rgba(0,0,0,0.6);
+  position:relative;
+  line-height:1;
+  margin:0;
+  font-weight:800;
+  background: linear-gradient(90deg, #fff, #ffd84d 50%, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sub{
+  margin:8px 0 16px;
+  opacity:0.9;
+  font-size:clamp(0.95rem, 2.2vw, 1.05rem);
+  color: rgba(255,255,255,0.9);
+}
+
+/* controls */
+.controls{ display:flex; gap:12px; justify-content:center; margin-top:8px; }
+.btn{
+  background: linear-gradient(90deg, #ffd84d, #ffc83a);
+  border:0;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  color:#111;
+  cursor:pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.btn.alt{
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:none;
+}
+
+/* bouquet */
+.bouquet-wrap{ width:100%; display:flex; justify-content:center; margin-top:18px; }
+.bouquet-card{ width:min(720px, 96%); max-width:720px; pointer-events:none; }
+.svg-bouquet{ width:100%; height:auto; display:block; }
+
+/* SVG styles */
+.stem{ fill:#2f7a3e; }
+.leaf{ fill:#2f7a3e; opacity:0.95; transform-origin:center; animation:leaf-s 5.8s ease-in-out infinite; }
+.petal-shape{ fill:var(--sun); stroke:#e6b400; stroke-width:0.6; transform-origin:center; animation:petal 3s ease-in-out infinite; }
+.center{ fill:#5b3a1a; stroke:#3e2712; stroke-width:1; }
+.ribbon{ stroke:#c33b8b; stroke-width:4; opacity:0.12; fill:none; }
+.ribbon2{ stroke:#ffd84d; stroke-width:6; opacity:0.9; fill:none; }
+
+/* animations */
+@keyframes petal { 0%{ transform:scale(1); } 50%{ transform:scale(1.03) rotate(1deg);} 100%{ transform:scale(1);} }
+@keyframes leaf-s { 0%{ transform:translateX(0) rotate(-2deg);} 50%{ transform:translateX(6px) rotate(2deg);} 100%{ transform:translateX(0) rotate(-2deg);} }
+
+/* nota modal */
+.note{ position:fixed; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center; background:rgba(3,6,12,0.5); z-index:999; opacity:0; pointer-events:none; transition:opacity .25s ease; }
+.note.show{ opacity:1; pointer-events:auto; }
+.note-inner{ width:min(420px,92%); background: #fff; color:#111; border-radius:12px; padding:18px 20px; box-shadow: 0 20px 50px rgba(4,6,20,0.6); position:relative; text-align:center; }
+.note h2{ margin:0 0 8px; color:#222; font-size:1.25rem; }
+.note-text{ color:#333; margin:8px 0 14px; line-height:1.45; }
+.note-close{ position:absolute; top:10px; right:12px; background:transparent; border:0; font-size:20px; cursor:pointer; color:#666; }
+.btn.heart{ background: linear-gradient(90deg,#ff8aa7,#ffd84d); color:#111; }
+
+/* small screens */
+@media (max-width:560px){
+  .headline{ font-size:clamp(1.8rem,8vw,3rem); }
+  .controls{ flex-wrap:wrap; gap:10px; }
+  .note-inner{ padding:14px; }
+  .btn{ padding:8px 12px; }
+}
